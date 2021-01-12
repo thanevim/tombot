@@ -1,0 +1,5 @@
+To Do list
+
+Keep track of dailies for other bots (wildcard daily for each user?)
+
+Tom interactions have scaling amount of payout (actors-related 5x, NTN 4x(preck .5x), GAME content 3x, general 2x, etc)
