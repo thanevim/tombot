@@ -17,7 +17,7 @@ async def on_message(message):
 	if message.author == client.user:
 		return
 	
-	if message.content.startswith("Tom is the best!"):
+	elif message.content.startswith("Tom is the best!"):
 		compResp = [
 			"Gee, thanks!!",
 			"Aww, you're pretty neat, too, {}!".format(message.author.mention),
@@ -34,12 +34,12 @@ async def on_message(message):
 #	if message.author == client.user:
 #		return
 	
-	if message.content.startswith("Hey Tom how are you"):
+	elif message.content.startswith("Hey Tom how are you"):
 		moodChoice = random.choice(list(open('tomMood.txt')))
 		await message.channel.send(moodChoice)
 		#await message.channel.send("read ya on mood")
 		return
-	if message.content.startswith("Ness is the best", "Ness is better", "ness is best", "ness is better"):
+	elif message.content.startswith("Ness is the best", "ness is best"):
 		nessBestResp = [
 			"You really think so? Eh, alright.",
 			"Yeah, he's okay.",
@@ -48,7 +48,7 @@ async def on_message(message):
 		nessBestRChoice = random.choice(nessBestResp)
 		await message.channel.send(nessBestRChoice)
 		return
-	if message.content.startswith("Preck is the best", "Preck is better", "preck is best", "preck is better"):
+	elif message.content.startswith("Preck is the best", "preck is best"):
 		preckBestResp = [
 			"You really think so? Eh, alright.",
 			"Yeah, he's okay.",
@@ -57,6 +57,40 @@ async def on_message(message):
 		preckBestRChoice = random.choice(preckBestResp)
 		await message.channel.send(preckBestRChoice)
 		return
+	elif message.content.startswith("Robin is the best", "Robin is best"):
+		RobinBestResp = [
+			"I know, right?",
+			"Hey! Keep your bits off my lady, pal!",
+			"That's an understatement! Unfortunately, I don't know a word that means 'better than the best,' but if I did I'd use it for Robin!"
+		]
+		RobinBestRChoice = random.choice(RobinBestResp)
+		await message.channel.send(RobinBestRChoice)
+		return
+	elif message.content.startswith("Cornelius is the best", "Cornelius is best"):
+		CorneliusBestResp = [
+			"No. Just no.",
+			"Oh my robot God, another Ness...",
+			"You gotta be kidding! Compared to me?!"
+		]
+		CorneliusBestRChoice = random.choice(CorneliusBestResp)
+		await message.channel.send(CorneliusBestRChoice)
+		return
+
+
+
+#Robin is the best!
+
+#I know, right?
+#Hey! Keep your bits off my lady, pal!
+#That's an understatement! Unfortunately, I don't know a word that means "better than the best," but if I did I'd use it for Robin!
+
+
+#Cornelius is the best!
+
+#No. Just no.
+#Oh my robot God, another Ness...
+#You gotta be kidding! Compared to me?!
+
 
 
 #message.content.(contains?)("Tom", "tom") AND	
