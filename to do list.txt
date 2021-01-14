@@ -1,5 +1,12 @@
 To Do list
 
+Tom headshot needed
+
 Keep track of dailies for other bots (wildcard daily for each user?)
 
 Tom interactions have scaling amount of payout (actors-related 5x, NTN 4x(preck .5x), GAME content 3x, general 2x, etc)
+
+Character Summoner: needs three people to say the character's name within a minute. 
+
+Mysterious Keywords: pulled from a list, shares super secrets about the various GAME series
+
