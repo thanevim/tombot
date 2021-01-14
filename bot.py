@@ -39,7 +39,7 @@ async def on_message(message):
 		await message.channel.send(moodChoice)
 		#await message.channel.send("read ya on mood")
 		return
-	elif message.content.startswith("Ness is the best", "ness is best"):
+	elif message.content.startswith("Ness is the best"):
 		nessBestResp = [
 			"You really think so? Eh, alright.",
 			"Yeah, he's okay.",
@@ -48,7 +48,7 @@ async def on_message(message):
 		nessBestRChoice = random.choice(nessBestResp)
 		await message.channel.send(nessBestRChoice)
 		return
-	elif message.content.startswith("Preck is the best", "preck is best"):
+	elif message.content.startswith("Preck is the best"):
 		preckBestResp = [
 			"You really think so? Eh, alright.",
 			"Yeah, he's okay.",
@@ -57,7 +57,7 @@ async def on_message(message):
 		preckBestRChoice = random.choice(preckBestResp)
 		await message.channel.send(preckBestRChoice)
 		return
-	elif message.content.startswith("Robin is the best", "Robin is best"):
+	elif message.content.startswith("Robin is the best"):
 		RobinBestResp = [
 			"I know, right?",
 			"Hey! Keep your bits off my lady, pal!",
@@ -66,7 +66,7 @@ async def on_message(message):
 		RobinBestRChoice = random.choice(RobinBestResp)
 		await message.channel.send(RobinBestRChoice)
 		return
-	elif message.content.startswith("Cornelius is the best", "Cornelius is best"):
+	elif message.content.startswith("Cornelius is the best"):
 		CorneliusBestResp = [
 			"No. Just no.",
 			"Oh my robot God, another Ness...",
