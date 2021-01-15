@@ -1,4 +1,5 @@
 import os
+import discord
 import random
 import asyncio
 import aiohttp
@@ -14,9 +15,12 @@ client = Bot(command_prefix=BOT_PREFIX)
 
 @client.event
 async def on_message(message):
+#Check if message is from bot, ignore if so
 	if message.author == client.user:
 		return
-	
+
+#Begin brag section
+#Tom
 	elif message.content.startswith("Tom is the best!"):
 		compResp = [
 			"Gee, thanks!!",
@@ -27,17 +31,6 @@ async def on_message(message):
 		]
 		complimentChoice = random.choice(compResp)
 		await message.channel.send(complimentChoice)
-		return
-
-#@client.event
-#async def on_message(message):
-#	if message.author == client.user:
-#		return
-	
-	elif message.content.startswith("Hey Tom how are you"):
-		moodChoice = random.choice(list(open('tomMood.txt')))
-		await message.channel.send(moodChoice)
-		#await message.channel.send("read ya on mood")
 		return
 	elif message.content.startswith("Ness is the best"):
 		nessBestResp = [
@@ -77,21 +70,12 @@ async def on_message(message):
 		return
 
 
-
-#Robin is the best!
-
-#I know, right?
-#Hey! Keep your bits off my lady, pal!
-#That's an understatement! Unfortunately, I don't know a word that means "better than the best," but if I did I'd use it for Robin!
-
-
-#Cornelius is the best!
-
-#No. Just no.
-#Oh my robot God, another Ness...
-#You gotta be kidding! Compared to me?!
-
-
+#Begin Other Tom-Specific command section
+	elif message.content.startswith("Hey Tom how are you"):
+		moodChoice = random.choice(list(open('tomMood.txt')))
+		await message.channel.send(moodChoice)
+		#await message.channel.send("read ya on mood")
+		return
 
 #message.content.(contains?)("Tom", "tom") AND	
 #message.content.(contains?)("bodies", "actors")
