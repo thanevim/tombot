@@ -15,13 +15,25 @@ client = Bot(command_prefix=BOT_PREFIX)
 
 @client.event
 async def on_message(message):
-#Check if message is from bot, ignore if so
+#Check if message is from this bot, ignore if so
 	if message.author == client.user:
 		return
-
+    raw = message.content.contains
+    msg = raw.casefold()
 #Begin brag section
 #Tom
-	elif message.content.startswith("Tom is the best!"):
+	elif message.content.startswith("Tom is the best"):
+		compResp = [
+			"Gee, thanks!!",
+			"Aww, you're pretty neat, too, {}!".format(message.author.mention),
+			"Hey thanks!",
+			"Y'know you're not so bad yourself, {}!".format(message.author.mention),
+			"D'aww, you're gonna make me blush! ...oh, wait, I can't."
+		]
+		complimentChoice = random.choice(compResp)
+		await message.channel.send(complimentChoice)
+		return
+    elif "tom is the best" in msg:
 		compResp = [
 			"Gee, thanks!!",
 			"Aww, you're pretty neat, too, {}!".format(message.author.mention),
@@ -71,14 +83,23 @@ async def on_message(message):
 
 
 #Begin Other Tom-Specific command section
-	elif message.content.startswith("Hey Tom how are you"):
+	elif message.content.startswith("Hey Tom, how are you"):
 		moodChoice = random.choice(list(open('tomMood.txt')))
 		await message.channel.send(moodChoice)
 		#await message.channel.send("read ya on mood")
 		return
+    elif message.content.contains("Hey Tom"):
+        await message.channel.send("Hey! How's it going?")
+        return
+    elif message.content.contains("Hi Tom"):
+        await message.channel.send("Heya!")
+        return
+    elif message.content.contains("hey tom")
+        await message.channel.send
 
 #message.content.(contains?)("Tom", "tom") AND	
 #message.content.(contains?)("bodies", "actors")
+#ask about commands
 
 	
 #client.loop.create_task(list_servers())
