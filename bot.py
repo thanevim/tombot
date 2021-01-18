@@ -16,9 +16,6 @@ BOT_PREFIX = ("ht!", "heyTom! ")
 client = Bot(command_prefix=BOT_PREFIX)
 
 async def run():
-    description = "A bot written in Python that uses asyncpg to connect to a postgreSQL database."
-
-    # NOTE: 127.0.0.1 is the loopback address. If your db is running on the same machine as the code, this address will work
     credentials = {"user": "dev", "password": "watermark11", "database": "devTomBot", "host": "127.0.0.1"}
     db = await asyncpg.create_pool(**credentials)
 
