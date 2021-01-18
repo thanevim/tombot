@@ -7,12 +7,40 @@ import json
 from discord import Game
 from discord.ext.commands import Bot
 from dotenv import load_dotenv
+import asyncpg
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-BOT_PREFIX = ("ht! ", "heyTom! ")
+BOT_PREFIX = ("ht!", "heyTom! ")
 
 client = Bot(command_prefix=BOT_PREFIX)
 
+async def run():
+    description = "A bot written in Python that uses asyncpg to connect to a postgreSQL database."
+
+    # NOTE: 127.0.0.1 is the loopback address. If your db is running on the same machine as the code, this address will work
+    credentials = {"user": "dev", "password": "watermark11", "database": "devTomBot", "host": "127.0.0.1"}
+    db = await asyncpg.create_pool(**credentials)
+
+    # Example create table code, you'll probably change it to suit you
+    await db.execute("CREATE TABLE IF NOT EXISTS users(id bigint PRIMARY KEY, data text);")
+
+    bot = Bot(description=description, db=db)
+    try:
+        await bot.start(config.token)
+    except KeyboardInterrupt:
+        await db.close()
+        await bot.logout()
+
+async def tomHi()
+	tomHello = [
+		"Heya!"
+		"Hey there!"
+		"Hey! How's it going?"
+		]
+	tomGreetChoice = random.choice(tomHello)
+	await message.channel.send(tomGreetChoice + message.author.mention)
+	return
 
 @client.event
 async def on_message(message):
@@ -21,43 +49,8 @@ async def on_message(message):
 		return
 	raw = message.content
 	msg = raw.casefold()
-#Function: determine response based on who is said as best.
-	def char_is_best(name):
-		if name is "tom":
-			compResp = [
-				"Gee, thanks!!",
-				"Aww, you're pretty neat, too, {}!".format(message.author.mention),
-				"Hey thanks!",
-				"Y'know you're not so bad yourself, {}!".format(message.author.mention),
-				"D'aww, you're gonna make me blush! ...oh, wait, I can't."
-				]
-			complimentChoice = random.choice(compResp)
-			await message.channel.send(complimentChoice)
-			return
-		elif name is "ness":
-			nessBestResp = [
-				"You really think so? Eh, alright.",
-				"Yeah, he's okay.",
-				"I mean, he's not as cool as a certain AI I know, but... Sure."
-				]
-			nessBestRChoice = random.choice(nessBestResp)
-			await message.channel.send(nessBestRChoice)
-		return
-		elif name is "preck":
-			preckBestResp = [
-				"You really think so? Eh, alright.",
-				"Yeah, he's okay.",
-				"I mean, he's not as cool as a certain AI I know, but... Sure."
-				]
-			preckBestRChoice = random.choice(preckBestResp)
-			await message.channel.send(preckBestRChoice)
-			return
-#is best event listener
-	if "is best" in msg:
-
-
-#Tom
-	if message.content.startswith("Tom is the best"):
+#Determine response based on who is said as best.
+	if "tom is the best" in msg or "tom is best" in msg:
 		compResp = [
 			"Gee, thanks!!",
 			"Aww, you're pretty neat, too, {}!".format(message.author.mention),
@@ -68,18 +61,7 @@ async def on_message(message):
 		complimentChoice = random.choice(compResp)
 		await message.channel.send(complimentChoice)
 		return
-	elif "tom is the best" in msg:
-		compResp = [
-			"Gee, thanks!!",
-			"Aww, you're pretty neat, too, {}!".format(message.author.mention),
-			"Hey thanks!",
-			"Y'know you're not so bad yourself, {}!".format(message.author.mention),
-			"D'aww, you're gonna make me blush! ...oh, wait, I can't."
-			]
-		complimentChoice = random.choice(compResp)
-		await message.channel.send(complimentChoice)
-		return
-	elif "ness is the best" in msg:
+	elif "ness is the best" in msg or "ness is best" in msg:
 		nessBestResp = [
 			"You really think so? Eh, alright.",
 			"Yeah, he's okay.",
@@ -88,7 +70,7 @@ async def on_message(message):
 		nessBestRChoice = random.choice(nessBestResp)
 		await message.channel.send(nessBestRChoice)
 		return
-	elif message.content.startswith("Preck is the best"):
+	elif "preck is the best" in msg or "preck is best" in msg:
 		preckBestResp = [
 			"You really think so? Eh, alright.",
 			"Yeah, he's okay.",
@@ -97,7 +79,7 @@ async def on_message(message):
 		preckBestRChoice = random.choice(preckBestResp)
 		await message.channel.send(preckBestRChoice)
 		return
-	elif message.content.startswith("Robin is the best"):
+	elif "robin is the best" in msg or "robin is best" in msg or "rbin is the best" in msg or "rbin is best" in msg:
 		RobinBestResp = [
 			"I know, right?",
 			"Hey! Keep your bits off my lady, pal!",
@@ -106,7 +88,7 @@ async def on_message(message):
 		RobinBestRChoice = random.choice(RobinBestResp)
 		await message.channel.send(RobinBestRChoice)
 		return
-	elif message.content.startswith("Cornelius is the best"):
+	elif "cornelius is the best" in msg or "cornelius is best" in msg:
 		CorneliusBestResp = [
 			"No. Just no.",
 			"Oh my robot God, another Ness...",
@@ -118,19 +100,20 @@ async def on_message(message):
 
 
 #Begin Other Tom-Specific command section
-	elif message.content.startswith("Hey Tom, how are you"):
+	elif "Hey Tom, how are you" in msg:
 		moodChoice = random.choice(list(open('tomMood.txt')))
 		await message.channel.send(moodChoice)
 		#await message.channel.send("read ya on mood")
 		return
-	elif message.content.contains("Hey Tom"):
-		await message.channel.send("Hey! How's it going?")
+	elif "hey tom" in msg:
+		tomHi()
 		return
-	elif message.content.contains("Hi Tom"):
-		await message.channel.send("Heya!")
+	elif "hi tom" in msg:
+		tomHi()
 		return
-	elif message.content.contains("hey tom"):
-		await message.channel.send
+	elif "hey there tom" in msg:
+		tomHi()
+		return
 
 #message.content.(contains?)("Tom", "tom") AND
 #message.content.(contains?)("bodies", "actors")
