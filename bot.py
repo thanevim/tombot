@@ -21,7 +21,7 @@ async def tomHi():
 		"Heya!"
 		"Hey there!"
 		"Hey! How's it going?"
-        "Allo there! hee hee That's a reference!"
+		"Allo there! hee hee That's a reference!"
 		]
 	tomGreetChoice = random.choice(tomHello)
 	await message.channel.send(tomGreetChoice + message.author.mention)
@@ -99,11 +99,11 @@ async def on_message(message):
 	elif "hey there tom" in msg:
 		tomHi()
 		return
-    elif "ello" in msg:
-        await message.channel.send("Did you just say hello? No, you said ello... But that's close enough.")
-        return
-    elif "allo" in msg:
-        await message.channel.send("Did you just say hello? No, you said allo... But that's close enough.")
+	elif "ello" in msg:
+		await message.channel.send("Did you just say hello? No, you said ello... But that's close enough.")
+		return
+	elif "allo" in msg:
+		await message.channel.send("Did you just say hello? No, you said allo... But that's close enough.")
 
 #message.content.(contains?)("Tom", "tom") AND
 #message.content.(contains?)("bodies", "actors")
