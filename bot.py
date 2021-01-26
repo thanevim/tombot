@@ -7,7 +7,7 @@ import json
 from discord import Game
 from discord.ext.commands import Bot
 from dotenv import load_dotenv
-import asyncpg
+
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -15,25 +15,13 @@ BOT_PREFIX = ("ht!", "heyTom! ")
 
 client = Bot(command_prefix=BOT_PREFIX)
 
-async def run():
-    credentials = {"user": "dev", "password": "watermark11", "database": "devTomBot", "host": "127.0.0.1"}
-    db = await asyncpg.create_pool(**credentials)
-
-    # Example create table code, you'll probably change it to suit you
-    await db.execute("CREATE TABLE IF NOT EXISTS users(id bigint PRIMARY KEY, data text);")
-
-    bot = Bot(description=description, db=db)
-    try:
-        await bot.start(config.token)
-    except KeyboardInterrupt:
-        await db.close()
-        await bot.logout()
 
 async def tomHi()
 	tomHello = [
 		"Heya!"
 		"Hey there!"
 		"Hey! How's it going?"
+        "Allo there! hee hee That's a reference!"
 		]
 	tomGreetChoice = random.choice(tomHello)
 	await message.channel.send(tomGreetChoice + message.author.mention)
@@ -111,6 +99,11 @@ async def on_message(message):
 	elif "hey there tom" in msg:
 		tomHi()
 		return
+    elif "ello" in msg:
+        await message.channel.send("Did you just say hello? No, you said ello... But that's close enough.")
+        return
+    elif "allo" in msg:
+        await message.channel.send("Did you just say hello? No, you said allo... But that's close enough.")
 
 #message.content.(contains?)("Tom", "tom") AND
 #message.content.(contains?)("bodies", "actors")
