@@ -6,8 +6,6 @@ import json
 from discord import Game
 from discord.ext.commands import Bot
 from dotenv import load_dotenv
-
-
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 BOT_PREFIX = ("ht!", "heyTom! ")
@@ -20,11 +18,10 @@ async def tomHi():
 		"Heya!"
 		"Hey there!"
 		"Hey! How's it going?"
-		"Allo there! hee hee That's a reference!"
 		]
 	tomGreetChoice = random.choice(tomHello)
 	await message.channel.send(tomGreetChoice + message.author.mention)
-	return
+	await return
 
 @client.event
 async def on_message(message):
@@ -90,17 +87,17 @@ async def on_message(message):
 		#await message.channel.send("read ya on mood")
 		return
 	elif "hey tom" in msg:
-		tomHi()
-		return
+		await tomHi()
+		await return
 	elif "hi tom" in msg:
-		tomHi()
-		return
+		await tomHi()
+		await return
 	elif "hey there tom" in msg:
-		tomHi()
-		return
+		await tomHi()
+		await return
 	elif "ello" in msg:
 		await message.channel.send("Did you just say hello? No, you said ello... But that's close enough.")
-		return
+		await return
 	elif "allo" in msg:
 		await message.channel.send("Did you just say hello? No, you said allo... But that's close enough.")
 
