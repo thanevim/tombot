@@ -16,7 +16,7 @@ BOT_PREFIX = ("ht!", "heyTom! ")
 client = Bot(command_prefix=BOT_PREFIX)
 
 
-async def tomHi()
+async def tomHi():
 	tomHello = [
 		"Heya!"
 		"Hey there!"
