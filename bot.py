@@ -3,7 +3,9 @@ import random
 import asyncio
 import aiohttp
 import json
+import discord
 from discord import Game
+from discord.ext import commands
 from discord.ext.commands import Bot
 from dotenv import load_dotenv
 load_dotenv()
@@ -12,16 +14,20 @@ BOT_PREFIX = ("ht!", "heyTom! ")
 
 client = Bot(command_prefix=BOT_PREFIX)
 
+@client.event
+async def on_ready():
+    #print(f"{bot.user.name} is online and ready to go! Bot id: {bot.user.id}")
+	print("{botUserName} is online and ready! Bot ID: {botUserID}".format(botUserName = client.user.name, botUserID = client.user.id))
 
-async def tomHi():
+async def tomHi(message):
 	tomHello = [
-		"Heya!"
-		"Hey there!"
+		"Heya!",
+		"Hey there!",
 		"Hey! How's it going?"
 		]
 	tomGreetChoice = random.choice(tomHello)
-	await message.channel.send(tomGreetChoice + message.author.mention)
-	await return
+	await message.channel.send(tomGreetChoice + " " + message.author.mention)
+	return
 
 @client.event
 async def on_message(message):
@@ -81,23 +87,23 @@ async def on_message(message):
 
 
 #Begin Other Tom-Specific command section
-	elif "Hey Tom, how are you" in msg:
+	elif "tom, how are you" in msg or "tom how are you" in msg or "how are you tom" in msg or "how are you, tom" in msg or "how are you today tom" in msg or "how are you today, tom" in msg:
 		moodChoice = random.choice(list(open('tomMood.txt')))
 		await message.channel.send(moodChoice)
 		#await message.channel.send("read ya on mood")
 		return
 	elif "hey tom" in msg:
-		await tomHi()
-		await return
+		await tomHi(message)
+		return
 	elif "hi tom" in msg:
-		await tomHi()
-		await return
+		await tomHi(message)
+		return
 	elif "hey there tom" in msg:
-		await tomHi()
-		await return
+		await tomHi(message)
+		return
 	elif "ello" in msg:
 		await message.channel.send("Did you just say hello? No, you said ello... But that's close enough.")
-		await return
+		return
 	elif "allo" in msg:
 		await message.channel.send("Did you just say hello? No, you said allo... But that's close enough.")
 
